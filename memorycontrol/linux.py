@@ -1,11 +1,4 @@
-try:
-    import psutil
-except ModuleNotFoundError:
-    raise ModuleNotFoundError(
-        "ModuleNotFoundError: No module named 'psutil'. Please install it with the command:\n\n"
-        "pip install psutil"
-    )
-
+import psutil
 import os
 import signal
 import time
@@ -76,4 +69,5 @@ def monitor_linux(command_line, memory_limit, kill_memory_threshold, check_inter
 
         except psutil.NoSuchProcess:
             print(f"The process with command line '{command_line}' has ended.")
-            break
+            time.sleep(check_interval)
+            continue
